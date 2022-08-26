@@ -33,10 +33,11 @@ License: GNU v3 or Later
   padding: 10px 5px;
   align-items: center;
   min-height: 60px;
-  background-color: hsl(0, 60%, 97%);
+  /* background-color: hsl(0, 60%, 97%); */
   position: fixed;
-  top: 0;
-  width: 1030px;
+  background-image: url(https://tranhlicopen.com/wp-content/uploads/2021/09/main-header.jpg);
+  top: 0px;
+  width: 100%;
   z-index: 4;
 }
 
@@ -244,6 +245,7 @@ License: GNU v3 or Later
   justify-content: space-between;
   color: black;
   line-height: 28px;
+  margin-top: 100px;
 }
 
 .payment {
@@ -444,4 +446,57 @@ h2.woocommerce-column__title {
 }
 .wc-block-grid__product-onsale{
   z-index: 3;
+}
+.features{
+  margin-top: 80px;
+  background-color: #f0dfcc;
+}
+.features__group-item{
+  display: grid;
+  grid-template-areas: "main left right";
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 3rem;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 3em;
+  width: 100vw;
+  /* margin: 3em auto 0 calc(50% - 50vw); */
+}
+.features__item{
+  line-height: 25px;
+}
+.features__image img{
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.features__title{
+  margin: 10px;
+}
+.features__desc{
+  margin: 10px;
+}
+.features__link{
+  text-decoration: none;
+  color:black;
+}
+@media screen and (max-width: 1180px) {
+  .features__group-item{
+    display:flex;
+  }
+}
+.pic__post{
+  margin: 30px;
+}
+.view__detail_post{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 0 20px;
+  max-width: 100%;
+}
+.view__detail_post img{
+  width: auto;
+  height: auto;
+  max-width: 100%;
 }

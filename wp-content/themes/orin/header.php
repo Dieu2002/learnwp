@@ -17,7 +17,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-    <div id="container">
+    <!-- <div id="container"> -->
         <header id="header">
             <div class="nav">
                 <div class="menu-left">
@@ -30,38 +30,40 @@
                     <a href="#">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </a>
-                    
+
                 </div>
-                
+
             </div>
             <label for="nav-moblie-input" class="nav__bars-btn">
                 <i class="fa fa-bars" aria-hidden="true"></i>
             </label>
-       
+
             <input type="checkbox" class="nav__input" id="nav-moblie-input">
 
 
             <label for="nav-moblie-input" class="nav__overlay">
             </label>
             <label for="nav-moblie-input" class="nav__mobile-close">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                </label>
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </label>
             <div class="nav__mobile">
-                
+
                 <div class="menu__mobile-left">
                     <p>Bee store</p>
                 </div>
                 <div class="menu__mobile-mid">
                     <?php dieu_menu('primary-menu'); ?>
+
                 </div>
                 <div class="menu__mobile-right">
                     <a href="#">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </a>
+                    <!-- <i class="fa fa-sun-o" aria-hidden="true"></i> -->
                 </div>
             </div>
         </header>
-        <div class="container-slider">
+        <!-- <div class="container-slider">
             <?php echo do_shortcode('[wonderplugin_slider id=1]'); ?>
-        </div>
-        
+        </div> -->
+       

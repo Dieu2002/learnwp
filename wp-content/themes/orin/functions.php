@@ -237,67 +237,55 @@ if( ! function_exists( 'dieu_entry_meta' ) ) {
 
   }
   add_action( 'wp_enqueue_scripts', 'dieu_styles' );
-/**
- * Tạo custom post type  */  
+/*Custom Post type start*/
 
-function tao_custom_post_type()
+function create_custom_post_type()
 {
+	$label = array(
+		'name' => 'pictures',
+		'singular_name' => 'picture'
+	);
 
+	$args = array(
+		'labels' => $label,
+		'description' => 'This post to use post all pictures',
+		'supports' => array(
+			'title',
+			'editor',
+			'excerpt',
+			'author',
+			'thumbnail',
+			'comments',
+			'trackbacks',
+			'revisions',
+			'custom-fields',
+		),
+		'taxonomies' => array('category', 'post_tag'),
+		'hierarchical' => false,
+		'public' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'show_in_nav_menus' => true,
+		'show_in_admin_bar' => true,
+		'menu_position' => 5, 
+		'can_export' => true,
+		'has_archive' => true,
+		'exclude_from_search' => false,
+		'publicly_queryable' => true,
+		'capability_type' => 'post'
+	);
 
-    /*
-     * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
-     */
-    $label = array(
-        'name' => 'Các loại tranh', //Tên post ty pe dạng số nhiều
-        'singular_name' => 'Tranh' //Tên post type dạng số ít
-    );
-    
-    /*
-     * Biến $args là những tham số quan trọng trong Post Type
-     */
-    $args = array(
-        'labels' => $label, //Gọi các label trong biến $label ở trên
-        'description' => 'Post type đăng sản phẩm', //Mô tả của post type
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'author',
-            'thumbnail',
-            'comments',
-            'trackbacks',
-            'revisions',
-            'custom-fields'
-        ), //Các tính năng được hỗ trợ trong post type
-        'taxonomies' => array( 'category', 'post_tag' ), //Các taxonomy được phép sử dụng để phân loại nội dung
-        'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, true thì giống như Page
-        'public' => true, //Kích hoạt post type
-        'show_ui' => true, //Hiển thị khung quản trị như Post/Page
-        'show_in_menu' => true, //Hiển thị trên Admin Menu (tay trái)
-        'show_in_nav_menus' => true, //Hiển thị trong Appearance -> Menus
-        'show_in_admin_bar' => true, //Hiển thị trên thanh Admin bar màu đen.
-        'menu_position' => 5, //Thứ tự vị trí hiển thị trong menu (tay trái)
-        'menu_icon' =>'', //Đường dẫn tới icon sẽ hiển thị
-        'can_export' => true, //Có thể export nội dung bằng Tools -> Export
-        'has_archive' => true, //Cho phép lưu trữ (month, date, year)
-        'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
-        'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
-        'capability_type' => 'post',//
-
-    );
-
-    register_post_type('tranh', $args); //Tạo post type với slug tên là tranh và các tham số trong biến $args ở trên
- 
+	register_post_type('picture', $args);//Tạo post type với slug tên là picture và các tham số trong biến $args ở trên
 }
-/* Kích hoạt hàm tạo custom post type */
-add_action('init', 'tao_custom_post_type');
 
-/**
- * hiển thị custom ra trang chủ
- */
-add_filter('pre_get_posts','lay_custom_post_type');
-function lay_custom_post_type($query) {
-  if (is_home() && $query->is_main_query ())
-    $query->set ('post_type', array ('post','tranh'));
-    return $query;
+add_action('init', 'create_custom_post_type');
+	
+add_post_type_support( 'create_custom_post_type', 'thumbnail' );
+// function to set post as default
+add_filter('pre_get_posts', 'get_custom_post_type');
+function get_custom_post_type($query)
+{
+	if (is_home() && $query->is_main_query())
+		$query->set('post_type', array('post', 'picture'));
+	return $query;
 }
