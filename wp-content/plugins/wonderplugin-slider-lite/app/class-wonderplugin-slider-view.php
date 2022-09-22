@@ -101,15 +101,14 @@ class WonderPlugin_Slider_View {
 			
 		<h2><?php echo __( 'Wonder Slider', 'wonderplugin_slider' ) . " " . ((WONDERPLUGIN_SLIDER_VERSION_TYPE == "C") ? "Pro" : ((WONDERPLUGIN_SLIDER_VERSION_TYPE == "L") ? "Lite" : "Trial")) . " Version " . WONDERPLUGIN_SLIDER_VERSION; ?> </h2>
 		 
-		<div id="welcome-panel" class="welcome-panel">
-			<div class="welcome-panel-content">
-				<h3>WordPress Image and Video Slider Plugin</h3>
-				<div class="welcome-panel-column-container">
-					<div class="welcome-panel-column">
+		<div id="welcome-panel">
+			<div>
+				<div style="display:flex;">
+					<div style="padding:18px;">
 						<h4>Get Started</h4>
 						<a class="button button-primary button-hero" href="<?php echo admin_url('admin.php?page=wonderplugin_slider_add_new'); ?>">Create A New Slider</a>
 					</div>
-					<div class="welcome-panel-column welcome-panel-last">
+					<div style="padding:18px;">
 						<h4>More Actions</h4>
 						<ul>
 							<li><a href="<?php echo admin_url('admin.php?page=wonderplugin_slider_show_items'); ?>" class="welcome-icon welcome-widgets-menus">Manage Existing Sliders</a></li>

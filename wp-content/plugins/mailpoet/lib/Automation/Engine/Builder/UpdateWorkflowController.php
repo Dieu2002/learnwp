@@ -70,13 +70,13 @@ class UpdateWorkflowController {
   }
 
   private function checkWorkflowStatus(string $status): void {
-    if (!in_array($status, [Workflow::STATUS_ACTIVE, Workflow::STATUS_INACTIVE, Workflow::STATUS_DRAFT], true)) {
+    if (!in_array($status, Workflow::STATUS_ALL, true)) {
       // translators: %s is the status.
       throw UnexpectedValueException::create()->withMessage(sprintf(__('Invalid status: %s', 'mailpoet'), $status));
     }
   }
 
-  private function validateWorkflowSteps(Workflow $workflow, array $steps): void {
+  protected function validateWorkflowSteps(Workflow $workflow, array $steps): void {
     $existingSteps = $workflow->getSteps();
     if (count($steps) !== count($existingSteps)) {
       throw Exceptions::workflowStructureModificationNotSupported();

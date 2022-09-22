@@ -1,0 +1,38 @@
+body {
+
+    h1 {
+
+        font-size: 26px;
+
+    }
+
+    h2 {
+        font-size: 23px;
+    }
+ 
+    --color-content {
+        color: white;
+    }
+    --title-size{
+        line-height: 26px;
+    }
+    --price-size{
+        font-size:26px;
+    }
+    --btn-background-color{
+        background-color:  #4CAF50;
+    }
+   --image-post{
+    transition: transform .2s;
+    
+   }
+}
+
+
+
+//@import '/css/content';
+@import '/css/style';
+@import '/css/footer';
+@import '/css/header';
+@import '/css/reset';
+@import 'home-content';

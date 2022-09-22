@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace WooCommerce\PayPalCommerce\WcGateway;
 
 use Psr\Container\ContainerInterface;
+use WooCommerce\PayPalCommerce\ApiClient\Authentication\Bearer;
 use WooCommerce\PayPalCommerce\ApiClient\Endpoint\PayUponInvoiceOrderEndpoint;
 use WooCommerce\PayPalCommerce\ApiClient\Entity\ApplicationContext;
 use WooCommerce\PayPalCommerce\ApiClient\Exception\RuntimeException;
@@ -53,6 +54,7 @@ use WooCommerce\PayPalCommerce\WcGateway\Notice\GatewayWithoutPayPalAdminNotice;
 use WooCommerce\PayPalCommerce\WcGateway\Processor\AuthorizedPaymentsProcessor;
 use WooCommerce\PayPalCommerce\WcGateway\Processor\OrderProcessor;
 use WooCommerce\PayPalCommerce\WcGateway\Processor\RefundProcessor;
+use WooCommerce\PayPalCommerce\WcGateway\Settings\HeaderRenderer;
 use WooCommerce\PayPalCommerce\WcGateway\Settings\SectionsRenderer;
 use WooCommerce\PayPalCommerce\WcGateway\Settings\Settings;
 use WooCommerce\PayPalCommerce\WcGateway\Settings\SettingsListener;
@@ -95,40 +97,29 @@ return array(
 	'wcgateway.credit-card-gateway'                        => static function ( ContainerInterface $container ): CreditCardGateway {
 		$order_processor     = $container->get( 'wcgateway.order-processor' );
 		$settings_renderer   = $container->get( 'wcgateway.settings.render' );
-		$authorized_payments = $container->get( 'wcgateway.processor.authorized-payments' );
 		$settings            = $container->get( 'wcgateway.settings' );
 		$module_url          = $container->get( 'wcgateway.url' );
 		$session_handler     = $container->get( 'session.handler' );
 		$refund_processor    = $container->get( 'wcgateway.processor.refunds' );
 		$state               = $container->get( 'onboarding.state' );
 		$transaction_url_provider = $container->get( 'wcgateway.transaction-url-provider' );
-		$payment_token_repository = $container->get( 'vaulting.repository.payment-token' );
-		$purchase_unit_factory = $container->get( 'api.factory.purchase-unit' );
-		$payer_factory = $container->get( 'api.factory.payer' );
-		$order_endpoint = $container->get( 'api.endpoint.order' );
 		$subscription_helper = $container->get( 'subscription.helper' );
 		$payments_endpoint = $container->get( 'api.endpoint.payments' );
 		$logger = $container->get( 'woocommerce.logger.woocommerce' );
-		$environment = $container->get( 'onboarding.environment' );
+		$vaulted_credit_card_handler = $container->get( 'vaulting.credit-card-handler' );
 		return new CreditCardGateway(
 			$settings_renderer,
 			$order_processor,
-			$authorized_payments,
 			$settings,
 			$module_url,
 			$session_handler,
 			$refund_processor,
 			$state,
 			$transaction_url_provider,
-			$payment_token_repository,
-			$purchase_unit_factory,
-			$container->get( 'api.factory.shipping-preference' ),
-			$payer_factory,
-			$order_endpoint,
 			$subscription_helper,
 			$logger,
-			$environment,
-			$payments_endpoint
+			$payments_endpoint,
+			$vaulted_credit_card_handler
 		);
 	},
 	'wcgateway.card-button-gateway'                        => static function ( ContainerInterface $container ): CardButtonGateway {
@@ -152,10 +143,14 @@ return array(
 		$settings       = $container->get( 'wcgateway.settings' );
 		return new DisableGateways( $session_handler, $settings );
 	},
+
 	'wcgateway.is-wc-payments-page'                        => static function ( ContainerInterface $container ): bool {
 		$page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 		$tab = isset( $_GET['tab'] ) ? sanitize_text_field( wp_unslash( $_GET['tab'] ) ) : '';
 		return 'wc-settings' === $page && 'checkout' === $tab;
+	},
+	'wcgateway.is-wc-gateways-list-page'                   => static function ( ContainerInterface $container ): bool {
+		return $container->get( 'wcgateway.is-wc-payments-page' ) && ! isset( $_GET['section'] );
 	},
 
 	'wcgateway.is-ppcp-settings-page'                      => static function ( ContainerInterface $container ): bool {
@@ -211,7 +206,14 @@ return array(
 	'wcgateway.settings.sections-renderer'                 => static function ( ContainerInterface $container ): SectionsRenderer {
 		return new SectionsRenderer(
 			$container->get( 'wcgateway.current-ppcp-settings-page-id' ),
-			$container->get( 'wcgateway.settings.sections' )
+			$container->get( 'wcgateway.settings.sections' ),
+			$container->get( 'onboarding.state' )
+		);
+	},
+	'wcgateway.settings.header-renderer'                   => static function ( ContainerInterface $container ): HeaderRenderer {
+		return new HeaderRenderer(
+			$container->get( 'wcgateway.current-ppcp-settings-page-id' ),
+			$container->get( 'wcgateway.url' )
 		);
 	},
 	'wcgateway.settings.sections'                          => static function ( ContainerInterface $container ): array {
@@ -356,7 +358,7 @@ return array(
 		$dcc_applies = $container->get( 'api.helpers.dccapplies' );
 		assert( $dcc_applies instanceof DccApplies );
 
-		$is_shop_supports_dcc = $dcc_applies->for_country_currency();
+		$is_shop_supports_dcc = $dcc_applies->for_country_currency() || $dcc_applies->for_wc_payments();
 
 		$onboarding_options_renderer = $container->get( 'onboarding.render-options' );
 		assert( $onboarding_options_renderer instanceof OnboardingOptionsRenderer );
@@ -942,6 +944,20 @@ return array(
 				),
 				'requirements' => array(),
 				'gateway'      => 'paypal',
+			),
+			'tracking_enabled'                   => array(
+				'title'        => __( 'Tracking', 'woocommerce-paypal-payments' ),
+				'type'         => 'checkbox',
+				'desc_tip'     => true,
+				'label'        => $container->get( 'wcgateway.settings.tracking-label' ),
+				'description'  => __( 'Allows to send shipment tracking numbers to PayPal for PayPal transactions.', 'woocommerce-paypal-payments' ),
+				'default'      => false,
+				'screens'      => array(
+					State::STATE_ONBOARDED,
+				),
+				'requirements' => array(),
+				'gateway'      => array( 'paypal' ),
+				'input_class'  => $container->get( 'wcgateway.settings.should-disable-tracking-checkbox' ) ? array( 'ppcp-disabled-checkbox' ) : array(),
 			),
 
 			// General button styles.
@@ -2286,7 +2302,8 @@ return array(
 	},
 	'wcgateway.pay-upon-invoice-helper'                    => static function( ContainerInterface $container ): PayUponInvoiceHelper {
 		return new PayUponInvoiceHelper(
-			$container->get( 'wcgateway.checkout-helper' )
+			$container->get( 'wcgateway.checkout-helper' ),
+			$container->get( 'wcgateway.settings' )
 		);
 	},
 	'wcgateway.pay-upon-invoice-product-status'            => static function( ContainerInterface $container ): PayUponInvoiceProductStatus {
@@ -2416,5 +2433,55 @@ return array(
 		return $settings->has( 'allow_card_button_gateway' ) ?
 			(bool) $settings->get( 'allow_card_button_gateway' ) :
 			$container->get( 'wcgateway.settings.allow_card_button_gateway.default' );
+	},
+	'order-tracking.is-tracking-available'                 => static function ( ContainerInterface $container ): bool {
+		try {
+			$bearer = $container->get( 'api.bearer' );
+			assert( $bearer instanceof Bearer );
+
+			$token = $bearer->bearer();
+			return $token->is_tracking_available();
+		} catch ( RuntimeException $exception ) {
+			return false;
+		}
+	},
+	'wcgateway.settings.should-disable-tracking-checkbox'  => static function ( ContainerInterface $container ): bool {
+		$pui_helper = $container->get( 'wcgateway.pay-upon-invoice-helper' );
+		assert( $pui_helper instanceof PayUponInvoiceHelper );
+
+		$is_tracking_available = $container->get( 'order-tracking.is-tracking-available' );
+
+		if ( ! $is_tracking_available ) {
+			return true;
+		}
+
+		if ( $pui_helper->is_pui_enabled() ) {
+			return true;
+		}
+
+		return false;
+	},
+	'wcgateway.settings.tracking-label'                    => static function ( ContainerInterface $container ): string {
+		$tracking_label = __( 'Enable tracking information feature on your store.', 'woocommerce-paypal-payments' );
+		$is_tracking_available = $container->get( 'order-tracking.is-tracking-available' );
+
+		if ( $is_tracking_available ) {
+			return $tracking_label;
+		}
+
+		$tracking_label .= sprintf(
+		// translators: %1$s and %2$s are the opening and closing of HTML <a> tag.
+			__(
+				' To use tracking features, you must %1$senable tracking on your account%2$s.',
+				'woocommerce-paypal-payments'
+			),
+			'<a
+					href="https://docs.woocommerce.com/document/woocommerce-paypal-payments/#enable-tracking-on-your-live-account"
+					target="_blank"
+				>',
+			'</a>'
+		);
+
+		return $tracking_label;
 	},
 );

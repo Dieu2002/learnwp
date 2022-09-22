@@ -1,0 +1,305 @@
+/* 
+Theme Name: orin
+ 
+Author: dieu
+Author URI: https://wordpress.org/
+Theme URI: https://wordpress.org/themes/orin
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Description: Theme Description.
+Version: 1.0.0
+Text Domain: dieu
+License: GNU v3 or Later 
+*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+
+
+/* css  header - menu */
+
+/* css  header - menu */
+#container {
+  max-width: 1030px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 10px 54px;
+  align-items: center;
+  min-height: 70px;
+  position: fixed;
+  background-image: url(https://tranhlicopen.com/wp-content/uploads/2021/09/main-header.jpg);
+  top: 0px;
+  width: 100%;
+  z-index: 4;
+  margin:0 auto;
+}
+
+.nav :hover {
+  color: #6e2f11;
+  font-weight: 10px;
+
+}
+.menu-left .site-name {
+  color: #6e2f11;
+  font-family: 'Jolly Lodger';
+  font-size: 43px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.menu-right {
+  display: flex;
+  gap: 15px;
+  margin: 10px 0px;
+  align-items: center;
+}
+
+.my__account .fa-user-o {
+  font-size: 30px;
+}
+
+.menu-right a {
+  color: #787878;
+  text-decoration: none;
+}
+
+.primary-menu ul li {
+  list-style-type: none;
+
+  display: inline;
+  margin: 10px;
+}
+
+.primary-menu ul li:hover {
+  text-decoration: underline rgb(136, 91, 91);
+}
+
+.primary-menu a {
+  color: #787878;
+  text-decoration: none;
+  font-size: 28px;
+}
+
+.entry-content {
+  margin-top: 36px;
+}
+
+.nav__bars-btn {
+  width: 80px;
+  height: 45px;
+  color: rgb(105, 18, 18);
+  display: none;
+  margin: 30px 0;
+
+}
+.fa-bars:before {
+  content: "\f0c9";
+  font-size: 42px;
+  margin: 0 5px;
+
+}
+
+.nav__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  animation: FadeIn linear 0.2s;
+}
+
+.nav__mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 100%;
+  background: #fff;
+  z-index: 4;
+  opacity: 0;
+  transform: translatey(-100%);
+  transition: transform linear 0.2s;
+}
+
+.nav__mobile .menu__mobile-left {
+  margin: 10px 10px;
+  color: #6e2f11;
+  font-family: 'Jolly Lodger';
+  font-size: 35px;
+}
+
+.nav__mobile .primary-menu {
+  margin-top: 10px;
+}
+
+.nav__mobile .primary-menu ul li {
+  display: block;
+  font-size: 20px;
+  color: black;
+  padding: 10px 5px;
+}
+
+.nav__mobile .menu__mobile-right .fa {
+  margin-left: 15px;
+  color: #787878;
+  font-size: 26px;
+}
+.fa-shopping-cart{
+  font-size: 26px;
+}
+.nav__mobile-close {
+  width: 28px;
+  height: 28px;
+  color: #666;
+  position: absolute;
+  top: 10px;
+  left: 259px;
+  display: none;
+}
+
+.nav__input {
+  display: none;
+}
+
+.nav__input:checked~.nav__overlay {
+  display: block;
+}
+
+.nav__input:checked~.nav__mobile {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+/* responsive header */
+@media screen and (max-width: 1180px) {
+  .nav__bars-btn {
+    display: block;
+    width:100%;
+    height:auto;
+    max-width:100%;
+  }
+
+  .nav {
+    display: none;
+  }
+
+}
+
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.search-form input {
+  outline: none;
+}
+
+.search-form input[type=search] {
+  -webkit-appearance: textfield;
+  -webkit-box-sizing: content-box;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+.search-form input::-webkit-search-decoration,
+.search-form input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-form input[type=search] {
+  padding: 9px 10px 9px 32px;
+  width: 55px;
+  background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  border: solid 1px #ccc;
+
+  -webkit-border-radius: 10em;
+  -moz-border-radius: 10em;
+  border-radius: 10em;
+
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  transition: all .5s;
+}
+
+.search-form input[type=search]:focus {
+  width: 130px;
+  background-color: #fff;
+  border-color: #66CC75;
+
+  -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+  -moz-box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+  box-shadow: 0 0 5px rgba(109, 207, 246, .5);
+}
+
+
+/*  */
+
+
+
+/* body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  transition: background 0.2s linear;
+}
+.dark {
+  background-color: #292c35;
+}
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.label {
+  width: 50px;
+  height: 26px;
+  background-color:#111;
+  display: flex;
+  border-radius:50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  position: relative;
+  transform: scale(1.5);
+}
+
+.ball {
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball{
+  transform: translateX(24px);
+}
+
+.fa-moon {
+  color: pink;
+}
+
+.fa-sun {
+  color: yellow;
+} */

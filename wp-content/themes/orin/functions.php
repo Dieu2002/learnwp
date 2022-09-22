@@ -60,7 +60,34 @@
 
 
 //   thiết lập teamplate------------------------------------------------
-  
+// thiết lập logo 
+if ( ! function_exists( 'dieu_logo' ) ) {
+  function dieu_logo() {?>
+    <div class="logo">
+      <div class="site-name">
+        <?php if ( is_home() ) {
+          printf(
+            '<h1><a href="%1$s" title="%2$s">%3$s</a></h1>',
+            get_bloginfo( 'url' ),
+            get_bloginfo( 'description' ),
+            get_bloginfo( 'sitename' )
+          );
+        } else {
+          printf(
+            '</p><a href="%1$s" title="%2$s">%3$s</a></p>',
+            get_bloginfo( 'url' ),
+            get_bloginfo( 'description' ),
+            get_bloginfo( 'sitename' )
+          );
+        } // endif ?>
+      </div>
+
+    </div>
+  <?php }
+}
+
+
+
 
   // Thiết lập hàm hiển thị menu
   
@@ -230,62 +257,82 @@ if( ! function_exists( 'dieu_entry_meta' ) ) {
      * Hàm get_stylesheet_uri() sẽ trả về giá trị dẫn đến file style.css của theme
      * Nếu sử dụng child theme, thì file style.css này vẫn load ra từ theme mẹ
      */
+
     wp_register_style( 'main-style', get_template_directory_uri() . '/style.css', 'all' );
-    wp_register_style( 'reset-style', get_template_directory_uri() . '/reset.css', 'all' );
+    wp_register_style( 'reset-style', get_template_directory_uri() . '/css/reset.css', 'all' );
+    // wp_register_style( 'app-style', get_template_directory_uri() . '/asset/css/app.css', 'all' );
+  
+
+
+    wp_register_style( 'header-style', get_template_directory_uri() . '/css/header.css', 'all' );
+    wp_register_style( 'footer-style', get_template_directory_uri() . '/css/footer.css', 'all' );
+    wp_register_style( 'content-style', get_template_directory_uri() . '/css/content.css', 'all' );
+
     wp_enqueue_style( 'main-style' );
     wp_enqueue_style( 'reset-style');
+    wp_enqueue_style( 'header-style');
+    wp_enqueue_style( 'footer-style');
+    // wp_enqueue_style( 'app-style');
+
+    wp_enqueue_style( 'content-style');
+
 
   }
   add_action( 'wp_enqueue_scripts', 'dieu_styles' );
 /*Custom Post type start*/
 
-function create_custom_post_type()
-{
-	$label = array(
-		'name' => 'pictures',
-		'singular_name' => 'picture'
-	);
 
-	$args = array(
-		'labels' => $label,
-		'description' => 'This post to use post all pictures',
-		'supports' => array(
-			'title',
-			'editor',
-			'excerpt',
-			'author',
-			'thumbnail',
-			'comments',
-			'trackbacks',
-			'revisions',
-			'custom-fields',
-		),
-		'taxonomies' => array('category', 'post_tag'),
-		'hierarchical' => false,
-		'public' => true,
-		'show_ui' => true,
-		'show_in_menu' => true,
-		'show_in_nav_menus' => true,
-		'show_in_admin_bar' => true,
-		'menu_position' => 5, 
-		'can_export' => true,
-		'has_archive' => true,
-		'exclude_from_search' => false,
-		'publicly_queryable' => true,
-		'capability_type' => 'post'
-	);
 
-	register_post_type('picture', $args);//Tạo post type với slug tên là picture và các tham số trong biến $args ở trên
+function change_urls($page_html) {
+  if(defined('LOCALTUNNEL_ACTIVE') && LOCALTUNNEL_ACTIVE === true) {
+
+    $wp_home_url = esc_url(home_url('/'));
+    $rel_home_url = wp_make_link_relative($wp_home_url);
+
+    $esc_home_url = str_replace('/', '\/', $wp_home_url);
+    $rel_esc_home_url = str_replace('/', '\/', $rel_home_url);
+
+    $rel_page_html = str_replace($wp_home_url, $rel_home_url, $page_html);
+    $esc_page_html = str_replace($esc_home_url, $rel_esc_home_url, $rel_page_html);
+
+    return $esc_page_html;
+  }
 }
 
-add_action('init', 'create_custom_post_type');
-	
-add_post_type_support( 'create_custom_post_type', 'thumbnail' );
-// function to set post as default
-add_filter('pre_get_posts', 'get_custom_post_type');
-function get_custom_post_type($query)
-{
-	if (is_home() && $query->is_main_query())
-		$query->set('post_type', array('post', 'picture'));
-	return $query;
+
+function buffer_start_relative_url() { 
+  if(defined('LOCALTUNNEL_ACTIVE') && LOCALTUNNEL_ACTIVE === true) {
+    ob_start('change_urls'); 
+  }
 }
+function buffer_end_relative_url() { 
+  if(defined('LOCALTUNNEL_ACTIVE') && LOCALTUNNEL_ACTIVE === true) {
+    @ob_end_flush(); 
+  }
+}
+
+add_action('registered_taxonomy', 'buffer_start_relative_url');
+add_action('shutdown', 'buffer_end_relative_url');
+
+
+function dieu_get_post($query){
+  if( $query->is_archive() && $query->is_main_query() ) : // is_main_query được sử dụng để tránh nó can thiệp vào truy vấn không phải mặc định
+    $query->set('orderby','rand'); // orderby=rand => sắp xếp bài ngẫu nhiên
+    $query->set('posts_per_page', '1'); // posts_per_page=1 => hiển thị 1 bài mỗi trang
+  endif;
+}  
+
+add_action( 'pre_get_posts', 'dieu_get_post' );
+
+function change_copyright($output){
+  $output='Hello, I am Dieu';
+  return $output;
+}
+add_filter('dieu_copyright','change_copyright');
+
+add_filter( 'widget_text', 'do_shortcode' );
+
+//function cart
+
+ 	
+?>

@@ -3,22 +3,13 @@
         'name' => 'wp-user-manager/wp-user-manager',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => 'f8d52c47d867f93b7f2c05661a8a7ad77f488b9c',
+        'reference' => '7ebb52a6a7b6220691a91d3652a54ae4aebbb1ca',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => false,
     ),
     'versions' => array(
-        'a5hleyrich/wp-background-processing' => array(
-            'pretty_version' => '1.0.1',
-            'version' => '1.0.1.0',
-            'reference' => '1f070aab5058dbaf45d5435a343033ddd8a641b1',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../a5hleyrich/wp-background-processing',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
         'brain/cortex' => array(
             'pretty_version' => 'dev-refactoring-fastroute',
             'version' => 'dev-refactoring-fastroute',
@@ -119,7 +110,7 @@
         'wp-user-manager/wp-user-manager' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => 'f8d52c47d867f93b7f2c05661a8a7ad77f488b9c',
+            'reference' => '7ebb52a6a7b6220691a91d3652a54ae4aebbb1ca',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -345,7 +345,7 @@ if ( is_multisite() ) {
 // Define must-use plugin directory constants, which may be overridden in the sunrise.php drop-in.
 wp_plugin_directory_constants();
 
-$GLOBALS['wp_plugin_paths'] = array();
+$GLOBALS['wp_plugin_paths'] = array(); // (1)cái ni chạy trước 
 
 // Load must-use plugins.
 foreach ( wp_get_mu_plugins() as $mu_plugin ) {
@@ -360,7 +360,7 @@ foreach ( wp_get_mu_plugins() as $mu_plugin ) {
 	 *
 	 * @param string $mu_plugin Full path to the plugin's main file.
 	 */
-	do_action( 'mu_plugin_loaded', $mu_plugin );
+	do_action( 'mu_plugin_loaded', $mu_plugin );// hàm ni sẽ được thực thi khi mà cái (1) chạy xong và tiếp theo đó hắn sẽ chạy các đoạn code tt
 }
 unset( $mu_plugin, $_wp_plugin_file );
 

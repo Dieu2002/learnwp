@@ -3,7 +3,7 @@ Contributors: wonderplugin
 Tags: slider, slideshow, responsive slider, responsive slideshow, image slider, image slideshow, video slider, video slideshow, YouTube slider, YouTube slideshow, YouTube gallery, Vimeo slider, Vimeo slideshow, Vimeo gallery, post slider, post slideshow, post gallery, lightbox gallery, full width slider, full width slideshow
 Donate link: https://www.wonderplugin.com/order/?ref=lite
 Requires at least: 3.6
-Tested up to: 5.7.1
+Tested up to: 6.0.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -66,17 +66,17 @@ This problem is normally because there are multiple jQuery loaded in your WordPr
 
 Please check the recently asked questions at [https://www.wonderplugin.com/blog/?ref=lite](https://www.wonderplugin.com/blog/?ref=lite)
 
-= What's the difference between the Commercial Version, Free Version and Lite Version =
+= What's the difference between the Commercial Version, Free Trial Version and Lite Version =
 
-The Commercial Version is full functional, includes all of the skins and has no watermark.
+The Commercial Version is fully functional, includes all of the skins and has no watermark.
 
-The Free Version is full functional and includes all of the skins. The Free Version will add a watermark on the slider that links to the product home page.
+The Free Trial Version is fully functional and includes all of the skins. The Free Trial Version has a 30-day limit, and will add a watermark on the slider that links to the product home page.
 
 The Lite Version only includes a limited number of skins. The Lite Version has no watermark.
 
 The plugin hosted on WordPress Plugin Directory is the Lite Version.
 
-You can download the Free Version at the product [homepage https://www.wonderplugin.com/wordpress-slider/?ref=lite](homepage https://www.wonderplugin.com/wordpress-slider/?ref=lite).
+You can download the Free Trial Version at the product [homepage https://www.wonderplugin.com/wordpress-slider/?ref=lite](homepage https://www.wonderplugin.com/wordpress-slider/?ref=lite).
 
 You can upgrade to the Commercial Version at [https://www.wonderplugin.com/order/?product=slider&ref=lite](https://www.wonderplugin.com/order/?product=slider&ref=lite).
 
@@ -87,6 +87,13 @@ You can upgrade to the Commercial Version at [https://www.wonderplugin.com/order
 3. Lightbox gallery example
 
 == Changelog ==
+
+= 13.4 =
+* Support Google Analytics 4 to track lightbox events
+* Add options to disable initialising YouTube and Vimeo API for GDPR
+* Fix a compatibility issue with the plugin Imagify
+* Fix a compatibility issue with PHP 8.1
+* Fix a mobile responsive issue of the skin FeatureList and StyleList
 
 = 12.8 =
 * Fix a compatibility issues with WordPress 5.6

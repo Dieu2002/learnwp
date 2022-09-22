@@ -1,18 +1,12 @@
-<?php 
-  $args = array(
-    'post_status' => 'publish',
-    'posts_per_page' => 1,
-    'post_type' => 'picture'
-  );
-  $the_query = new WP_Query( $args );
-?>
-<section id="picture-content">
+<?php get_header(); ?>
+<!-- kiểm tra trang hiện tại hĩ-->
+<section id="main-content">
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-			<?php get_template_part('content', get_post_format() ); ?>
+			<?php get_template_part('content'); ?>
 		<?php endwhile; ?>
         <?php dieu_pagination();?>
 		<?php else : ?>
 			<?php get_template_part('content','none' ); ?>
 		<?php endif; ?>
-</section>
-<?php wp_reset_query(); ?>
+	</section>
+<?php get_footer(); ?>

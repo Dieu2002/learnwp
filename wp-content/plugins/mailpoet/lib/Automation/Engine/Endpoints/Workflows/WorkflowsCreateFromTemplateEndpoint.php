@@ -22,15 +22,13 @@ class WorkflowsCreateFromTemplateEndpoint extends Endpoint {
   }
 
   public function handle(Request $request): Response {
-    $data = $request->getParams();
-    $this->createWorkflowFromTemplateController->createWorkflow($data);
+    $this->createWorkflowFromTemplateController->createWorkflow((string)$request->getParam('slug'));
     return new Response();
   }
 
   public static function getRequestSchema(): array {
     return [
-      'name' => Builder::string()->required(),
-      'template' => Builder::string()->required(),
+      'slug' => Builder::string()->required(),
     ];
   }
 }

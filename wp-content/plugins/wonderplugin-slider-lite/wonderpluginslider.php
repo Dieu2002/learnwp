@@ -3,7 +3,7 @@
 Plugin Name: Wonder Slider Lite
 Plugin URI: https://www.wonderplugin.com/wordpress-slider/
 Description: WordPress Image and Video Slider Plugin
-Version: 12.8
+Version: 13.4
 Author: Magic Hills Pty Ltd
 Author URI: https://www.wonderplugin.com/
 License: Copyright 2018 Magic Hills Pty Ltd, All Rights Reserved
@@ -15,11 +15,11 @@ if ( ! defined( 'ABSPATH' ) )
 if (defined('WONDERPLUGIN_SLIDER_VERSION'))
 	return;
 
-define('WONDERPLUGIN_SLIDER_VERSION', '12.8');
+define('WONDERPLUGIN_SLIDER_VERSION', '13.4');
 define('WONDERPLUGIN_SLIDER_URL', plugin_dir_url( __FILE__ ));
 define('WONDERPLUGIN_SLIDER_PATH', plugin_dir_path( __FILE__ ));
 define('WONDERPLUGIN_SLIDER_PLUGIN', basename(dirname(__FILE__)) . '/' . basename(__FILE__));
-define('WONDERPLUGIN_SLIDER_PLUGIN_VERSION', '12.8');
+define('WONDERPLUGIN_SLIDER_PLUGIN_VERSION', '13.4');
 
 require_once 'app/class-wonderplugin-slider-controller.php';
 
@@ -65,7 +65,7 @@ class WonderPlugin_Slider_Plugin {
 			add_filter( 'jetpack_lazy_images_blacklisted_classes', array($this, 'modify_jetpack_slider_lazy_classes'), 10, 3 );
 		}
 
-		add_filter( 'block_categories',  array($this, 'register_block_categories'), 10, 2 );
+		add_filter( 'block_categories_all',  array($this, 'register_block_categories'), 10, 2 );
 	}
 	
 	function rest_api () {
@@ -395,6 +395,11 @@ class WonderPlugin_Slider_Plugin {
 		if ( !isset($atts['id']) )
 			return __('Please specify a slider id', 'wonderplugin_slider');
 		
+		foreach($atts as $key => $value)
+		{
+			$atts[$key] = esc_attr($value);
+		}
+
 		$id = $atts['id'];
 
 		if ( isset($atts['ipadid']) && $this->is_ipad() )
@@ -405,6 +410,15 @@ class WonderPlugin_Slider_Plugin {
 		unset($atts['id']);
 		unset($atts['ipadid']);
 		unset($atts['mobileid']);
+
+		foreach($atts as $key => $value)
+		{
+			if (strlen($key) > 5 && strtolower(substr($key, 0, 5)) === 'data-')
+			{
+				$atts[strtolower(substr($key, 5))] = $value;
+				unset($key);
+			}
+		}
 
 		return $this->wonderplugin_slider_controller->generate_body_code( $id, false, $atts);
 	}

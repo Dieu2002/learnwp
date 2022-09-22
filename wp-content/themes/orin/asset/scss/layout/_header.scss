@@ -1,0 +1,186 @@
+#container {
+    max-width: 1030px;
+    padding: 0 15px;
+    margin: 0 auto;
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        padding: 10px 5px;
+        align-items: center;
+        min-height: 70px;
+        position: fixed;
+        background-image: url(https://tranhlicopen.com/wp-content/uploads/2021/09/main-header.jpg);
+        top: 0px;
+        width: 100%;
+        z-index: 4;
+        .menu-left .site-name {
+            color: #6e2f11;
+            font-family: 'Jolly Lodger';
+            font-size: 43px;
+            line-height: 20px;
+            cursor: pointer;
+        }
+        .menu-right a {
+            color: #787878;
+            text-decoration: none;
+          }
+          .primary-menu ul li {
+            list-style-type: none;
+            
+            display: inline;
+            margin: 10px;
+          }
+          .primary-menu ul li:hover{
+            text-decoration: underline rgb(136, 91, 91);
+          }
+          .primary-menu a {
+            color: #787878;
+            text-decoration: none;
+          }
+      }
+      .nav :hover {
+        color: #6e2f11;
+        font-weight: 10px;
+        
+      }
+      .nav__bars-btn {
+        width: 40px;
+        height: 40px;
+        color: rgb(105, 18, 18);
+        display: none;
+        margin-top: 30px;
+        /* margin-left: 8px; */
+      }
+      .nav__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: none;
+        animation: FadeIn linear 0.2s;
+      }
+      
+      .nav__mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 320px;
+        max-width: 100%;
+        background: #fff;
+        z-index: 1;
+        opacity: 0;
+        transform: translatey(-100%);
+        transition: transform linear 0.2s;
+      }
+      
+      .nav__mobile .menu__mobile-left {
+        margin: 10px 10px;
+        color: #6e2f11;
+        font-family: 'Jolly Lodger';
+        font-size: 35px;
+      }
+      
+      .nav__mobile .primary-menu {
+        margin-top: 10px;
+      }
+      
+      .nav__mobile .primary-menu ul li {
+        display: block;
+        font-size: 20px;
+        color: black;
+        padding: 10px 5px;
+      }
+      
+      .nav__mobile .menu__mobile-right .fa {
+        margin-left: 15px;
+        color: #787878;
+        font-size: 20px;
+      }
+      
+      .nav__mobile-close {
+        width: 28px;
+        height: 28px;
+        color: #666;
+        position: absolute;
+        top: 10px;
+        left: 259px;
+        display: none;
+      }
+      
+      .nav__input {
+        display: none;
+      }
+      
+      .nav__input:checked~.nav__overlay {
+        display: block;
+      }
+      
+      .nav__input:checked~.nav__mobile {
+        transform: translateY(0%);
+        opacity: 1;
+      }    
+  
+    .search-form{
+      input {
+        outline: none;
+      }
+      
+      input[type=search] {
+        -webkit-appearance: textfield;
+        -webkit-box-sizing: content-box;
+        font-family: inherit;
+        font-size: 100%;
+      }
+      input::-webkit-search-decoration,
+      input::-webkit-search-cancel-button {
+        display: none; 
+      }
+      input[type=search] {
+        padding: 9px 10px 9px 32px;
+        width: 55px;
+        background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+        border: solid 1px #ccc;
+        
+        -webkit-border-radius: 10em;
+           -moz-border-radius: 10em;
+                border-radius: 10em;
+        
+        -webkit-transition: all .5s;
+           -moz-transition: all .5s;
+                transition: all .5s;
+      }
+      input[type=search]:focus {
+        width: 130px;
+        background-color: #fff;
+        border-color: #66CC75;
+        
+        -webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+           -moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+                box-shadow: 0 0 5px rgba(109,207,246,.5);
+      }
+    }
+
+/* responsive header */
+@media screen and (max-width: 1180px) {
+    .nav__bars-btn {
+      display: block;
+      font-size: 20px;
+    }
+    .nav {
+      display: none;
+    }
+  
+  }
+  @keyframes FadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

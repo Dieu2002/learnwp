@@ -1,0 +1,162 @@
+2022-09-08T01:44:39+00:00 CRITICAL Uncaught Error: Call to undefined function hk_get_thumb() in /var/www/html/wp-content/themes/orin/page-cart.php:10
+Stack trace:
+#0 /var/www/html/wp-includes/template.php(772): require()
+#1 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', false, Array)
+#2 /var/www/html/wp-includes/general-template.php(204): locate_template(Array, true, false, Array)
+#3 /var/www/html/wp-content/themes/orin/header.php(37): get_template_part('page-cart')
+#4 /var/www/html/wp-includes/template.php(770): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', true, Array)
+#6 /var/www/html/wp-includes/general-template.php(48): locate_template(Array, true, true, Array)
+#7 /var/www/html/wp-content/themes/orin/page-home.php(2): get_header()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/va in /var/www/html/wp-content/themes/orin/page-cart.php on line 10
+
+2022-09-08T01:45:28+00:00 CRITICAL Uncaught Error: Call to undefined function hk_get_thumb() in /var/www/html/wp-content/themes/orin/page-cart.php:10
+Stack trace:
+#0 /var/www/html/wp-includes/template.php(772): require()
+#1 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', false, Array)
+#2 /var/www/html/wp-includes/general-template.php(204): locate_template(Array, true, false, Array)
+#3 /var/www/html/wp-content/themes/orin/header.php(37): get_template_part('page-cart')
+#4 /var/www/html/wp-includes/template.php(770): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', true, Array)
+#6 /var/www/html/wp-includes/general-template.php(48): locate_template(Array, true, true, Array)
+#7 /var/www/html/wp-content/themes/orin/page-home.php(2): get_header()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/va in /var/www/html/wp-content/themes/orin/page-cart.php on line 10
+
+2022-09-08T01:45:36+00:00 CRITICAL Uncaught Error: Call to undefined function hk_get_thumb() in /var/www/html/wp-content/themes/orin/page-cart.php:10
+Stack trace:
+#0 /var/www/html/wp-includes/template.php(772): require()
+#1 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', false, Array)
+#2 /var/www/html/wp-includes/general-template.php(204): locate_template(Array, true, false, Array)
+#3 /var/www/html/wp-content/themes/orin/header.php(37): get_template_part('page-cart')
+#4 /var/www/html/wp-includes/template.php(770): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', true, Array)
+#6 /var/www/html/wp-includes/general-template.php(48): locate_template(Array, true, true, Array)
+#7 /var/www/html/wp-content/themes/orin/page-home.php(2): get_header()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/va in /var/www/html/wp-content/themes/orin/page-cart.php on line 10
+
+2022-09-08T01:45:38+00:00 CRITICAL Uncaught Error: Call to undefined function hk_get_thumb() in /var/www/html/wp-content/themes/orin/page-cart.php:10
+Stack trace:
+#0 /var/www/html/wp-includes/template.php(772): require()
+#1 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', false, Array)
+#2 /var/www/html/wp-includes/general-template.php(204): locate_template(Array, true, false, Array)
+#3 /var/www/html/wp-content/themes/orin/header.php(37): get_template_part('page-cart')
+#4 /var/www/html/wp-includes/template.php(770): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', true, Array)
+#6 /var/www/html/wp-includes/general-template.php(48): locate_template(Array, true, true, Array)
+#7 /var/www/html/wp-content/themes/orin/page-home.php(2): get_header()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/va in /var/www/html/wp-content/themes/orin/page-cart.php on line 10
+
+2022-09-08T01:45:39+00:00 CRITICAL Uncaught Error: Call to undefined function hk_get_thumb() in /var/www/html/wp-content/themes/orin/page-cart.php:10
+Stack trace:
+#0 /var/www/html/wp-includes/template.php(772): require()
+#1 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', false, Array)
+#2 /var/www/html/wp-includes/general-template.php(204): locate_template(Array, true, false, Array)
+#3 /var/www/html/wp-content/themes/orin/header.php(37): get_template_part('page-cart')
+#4 /var/www/html/wp-includes/template.php(770): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', true, Array)
+#6 /var/www/html/wp-includes/general-template.php(48): locate_template(Array, true, true, Array)
+#7 /var/www/html/wp-content/themes/orin/page-home.php(2): get_header()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/va in /var/www/html/wp-content/themes/orin/page-cart.php on line 10
+
+2022-09-08T01:45:40+00:00 CRITICAL Uncaught Error: Call to undefined function hk_get_thumb() in /var/www/html/wp-content/themes/orin/page-cart.php:10
+Stack trace:
+#0 /var/www/html/wp-includes/template.php(772): require()
+#1 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', false, Array)
+#2 /var/www/html/wp-includes/general-template.php(204): locate_template(Array, true, false, Array)
+#3 /var/www/html/wp-content/themes/orin/header.php(37): get_template_part('page-cart')
+#4 /var/www/html/wp-includes/template.php(770): require_once('/var/www/html/w...')
+#5 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', true, Array)
+#6 /var/www/html/wp-includes/general-template.php(48): locate_template(Array, true, true, Array)
+#7 /var/www/html/wp-content/themes/orin/page-home.php(2): get_header()
+#8 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#9 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#10 /var/www/html/index.php(17): require('/va in /var/www/html/wp-content/themes/orin/page-cart.php on line 10
+
+2022-09-08T02:05:11+00:00 CRITICAL Uncaught Error: Call to a member function get_id() on null in /var/www/html/wp-content/themes/orin/page-shop.php:18
+Stack trace:
+#0 /var/www/html/wp-includes/template.php(772): require()
+#1 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', false, Array)
+#2 /var/www/html/wp-includes/general-template.php(204): locate_template(Array, true, false, Array)
+#3 /var/www/html/wp-content/themes/orin/page-home.php(31): get_template_part('page-shop')
+#4 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#5 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#6 /var/www/html/index.php(17): require('/var/www/html/w...')
+#7 {main}
+  thrown in /var/www/html/wp-content/themes/orin/page-shop.php on line 18
+
+2022-09-08T02:05:37+00:00 CRITICAL Uncaught Error: Call to a member function get_id() on null in /var/www/html/wp-content/themes/orin/page-shop.php:18
+Stack trace:
+#0 /var/www/html/wp-includes/template.php(772): require()
+#1 /var/www/html/wp-includes/template.php(716): load_template('/var/www/html/w...', false, Array)
+#2 /var/www/html/wp-includes/general-template.php(204): locate_template(Array, true, false, Array)
+#3 /var/www/html/wp-content/themes/orin/page-home.php(31): get_template_part('page-shop')
+#4 /var/www/html/wp-includes/template-loader.php(106): include('/var/www/html/w...')
+#5 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#6 /var/www/html/index.php(17): require('/var/www/html/w...')
+#7 {main}
+  thrown in /var/www/html/wp-content/themes/orin/page-shop.php on line 18
+
+2022-09-08T02:46:40+00:00 CRITICAL Uncaught Error: Using $this when not in object context in /var/www/html/wp-content/themes/orin/page-checkout.php:3
+Stack trace:
+#0 /var/www/html/wp-includes/template-loader.php(106): include()
+#1 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#2 /var/www/html/index.php(17): require('/var/www/html/w...')
+#3 {main}
+  thrown in /var/www/html/wp-content/themes/orin/page-checkout.php on line 3
+
+2022-09-08T02:58:08+00:00 CRITICAL Uncaught Error: Call to undefined function eregi() in /var/www/html/wp-content/themes/orin/page-contact.php:26
+Stack trace:
+#0 /var/www/html/wp-includes/template-loader.php(106): include()
+#1 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#2 /var/www/html/index.php(17): require('/var/www/html/w...')
+#3 {main}
+  thrown in /var/www/html/wp-content/themes/orin/page-contact.php on line 26
+
+2022-09-08T02:58:51+00:00 CRITICAL Uncaught Error: Call to undefined function eregi() in /var/www/html/wp-content/themes/orin/page-contact.php:26
+Stack trace:
+#0 /var/www/html/wp-includes/template-loader.php(106): include()
+#1 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#2 /var/www/html/index.php(17): require('/var/www/html/w...')
+#3 {main}
+  thrown in /var/www/html/wp-content/themes/orin/page-contact.php on line 26
+
+2022-09-08T03:07:38+00:00 CRITICAL Uncaught Error: Using $this when not in object context in /var/www/html/wp-content/themes/orin/page-checkout.php:3
+Stack trace:
+#0 /var/www/html/wp-includes/template-loader.php(106): include()
+#1 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#2 /var/www/html/index.php(17): require('/var/www/html/w...')
+#3 {main}
+  thrown in /var/www/html/wp-content/themes/orin/page-checkout.php on line 3
+
+2022-09-08T03:41:35+00:00 CRITICAL syntax error, unexpected end of file in /var/www/html/wp-content/themes/orin/page-shop.php on line 62
+
+2022-09-08T03:41:38+00:00 CRITICAL syntax error, unexpected end of file in /var/www/html/wp-content/themes/orin/page-shop.php on line 62
+
+2022-09-08T04:14:23+00:00 CRITICAL Uncaught Error: Using $this when not in object context in /var/www/html/wp-content/themes/orin/page-checkout.php:3
+Stack trace:
+#0 /var/www/html/wp-includes/template-loader.php(106): include()
+#1 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#2 /var/www/html/index.php(17): require('/var/www/html/w...')
+#3 {main}
+  thrown in /var/www/html/wp-content/themes/orin/page-checkout.php on line 3
+
+2022-09-08T04:35:07+00:00 CRITICAL syntax error, unexpected ',' in /var/www/html/wp-content/themes/orin/page-shop.php on line 17
+
+2022-09-08T04:51:38+00:00 CRITICAL Uncaught Error: Using $this when not in object context in /var/www/html/wp-content/themes/orin/page-checkout.php:3
+Stack trace:
+#0 /var/www/html/wp-includes/template-loader.php(106): include()
+#1 /var/www/html/wp-blog-header.php(19): require_once('/var/www/html/w...')
+#2 /var/www/html/index.php(17): require('/var/www/html/w...')
+#3 {main}
+  thrown in /var/www/html/wp-content/themes/orin/page-checkout.php on line 3
+

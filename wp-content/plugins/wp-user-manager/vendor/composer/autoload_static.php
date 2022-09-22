@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInite059e412852a03c2ff5e2d2dbd759e47
+class ComposerStaticInit28daae1ed0f41dc1ed921b4df4c25d35
 {
     public static $files = array (
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
@@ -68,17 +68,15 @@ class ComposerStaticInite059e412852a03c2ff5e2d2dbd759e47
         'Gamajo_Template_Loader' => __DIR__ . '/..' . '/gamajo/template-loader/class-gamajo-template-loader.php',
         'TDP\\OptionsKit' => __DIR__ . '/..' . '/wp-user-manager/wp-optionskit/wp-optionskit.php',
         'TDP\\WP_Notice' => __DIR__ . '/..' . '/wp-user-manager/wp-notices/wp-notices.php',
-        'WP_Async_Request' => __DIR__ . '/..' . '/a5hleyrich/wp-background-processing/classes/wp-async-request.php',
-        'WP_Background_Process' => __DIR__ . '/..' . '/a5hleyrich/wp-background-processing/classes/wp-background-process.php',
         'WP_Requirements_Check' => __DIR__ . '/..' . '/wearerequired/wp-requirements-check/WP_Requirements_Check.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInite059e412852a03c2ff5e2d2dbd759e47::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInite059e412852a03c2ff5e2d2dbd759e47::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite059e412852a03c2ff5e2d2dbd759e47::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit28daae1ed0f41dc1ed921b4df4c25d35::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit28daae1ed0f41dc1ed921b4df4c25d35::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit28daae1ed0f41dc1ed921b4df4c25d35::$classMap;
 
         }, null, ClassLoader::class);
     }

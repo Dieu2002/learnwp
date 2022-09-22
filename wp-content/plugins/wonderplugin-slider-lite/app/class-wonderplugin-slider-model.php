@@ -526,7 +526,7 @@ class WonderPlugin_Slider_Model {
 			
 			$boolOptions = array('usejsforfullbrowserwidth', 'fullbrowserwidth', 'playmutedandinlinewhenautoplay', 'addextraattributes', 'autoplay', 'randomplay', 'loadimageondemand', 'transitiononfirstslide', 'autoplayvideo', 'isresponsive', 'fullwidth', 'isfullscreen', 'ratioresponsive', 'showtext', 'showtimer', 'showbottomshadow', 'navshowpreview', 'textautohide',
 					'pauseonmouseover', 'lightboxresponsive', 'lightboxshownavigation', 'lightboxshowtitle', 'lightboxshowdescription', 'texteffectresponsive', 'donotinit', 'addinitscript', 'lightboxfullscreenmode', 'lightboxcloseonoverlay', 'lightboxvideohidecontrols', 'lightboxnogroup',
-					'shownav', 'navthumbresponsive', 'navshowfeaturedarrow',
+					'shownav', 'navthumbresponsive', 'navshowfeaturedarrow', 'inityoutube', 'initvimeo',
 					'navshowplaypause', 'navshowarrow', 'navshowbuttons',
 					'lightboxshowsocial', 'lightboxshowfacebook', 'lightboxshowtwitter', 'lightboxshowpinterest', 'lightboxsocialrotateeffect',
 					'showsocial', 'showfacebook', 'showtwitter', 'showpinterest', 'socialrotateeffect', 'disableinlinecss',
@@ -550,7 +550,7 @@ class WonderPlugin_Slider_Model {
 			}
 			
 			$valOptions = array('titletag', 'descriptiontag', 'scalemode', 'arrowstyle', 'transition', 'loop', 'border', 'slideinterval', 
-					'arrowimage', 'arrowwidth', 'arrowheight', 'arrowtop', 'arrowmargin',
+					'arrowimage', 'arrowwidth', 'arrowheight', 'arrowtop', 'arrowmargin', 'ga4account', 'googleanalyticsaccount',
 					'navplaypauseimage', 'navarrowimage',
 					'navstyle', 'navimage', 'navwidth', 'navheight', 'navspacing', 'navmarginx', 'navmarginy', 'navposition',
 					'navthumbnavigationstyle', 'navthumbnavigationarrowimage', 'navthumbnavigationarrowimagewidth', 'navthumbnavigationarrowimageheight',
@@ -596,24 +596,26 @@ class WonderPlugin_Slider_Model {
 			if ( !empty($atts['mediaids']) )
 			{
 				$mediaIds = array_map('trim', explode(",", $atts['mediaids']));
+				$mediaimagesize = empty($atts['mediaimagesize']) ? "" : $atts['mediaimagesize'];
 
 				if (!isset($data->slides))
 				{
 					$data->slides = array();
 				}
 
-				foreach($mediaIds as $id)
+				foreach($mediaIds as $mId)
 				{
-					$mediaId = $id;
+					$mediaId = $mId;
 					
 					if ($this->multilingual && $currentlang != $this->defaultlang)
 					{
-						$mediaId = apply_filters( 'wpml_object_id', $id, 'attachment', TRUE, $currentlang );
+						$mediaId = apply_filters( 'wpml_object_id', $mId, 'attachment', TRUE, $currentlang );
 					}
 
 					$data->slides[] = (object) array(
 						'type' => 12,
-						'mediaid' => $mediaId
+						'mediaid' => $mediaId,
+						'mediaimagesize' => $mediaimagesize
 					);
 				}
 			}
@@ -910,7 +912,14 @@ class WonderPlugin_Slider_Model {
 			$featuredImageId = get_post_thumbnail_id($slide->mediaid);
 			if ( !empty($featuredImageId) )
 			{
-				$postImages = wp_get_attachment_image_src($featuredImageId, 'full');
+				if (!empty($slide->mediaimagesize))
+				{
+					$postImages = wp_get_attachment_image_src($featuredImageId, $slide->mediaimagesize);
+				}
+				else
+				{
+					$postImages = wp_get_attachment_image_src($featuredImageId, 'full');
+				}
 				$poster = empty($postImages) ? '' : $postImages[0]; 
 
 				$thumbimages = wp_get_attachment_image_src($featuredImageId, $imagesize);
@@ -930,9 +939,20 @@ class WonderPlugin_Slider_Model {
 			$thumbimages = wp_get_attachment_image_src($slide->mediaid, $imagesize);
 			$thumbnail = empty($thumbimages) ? '' : $thumbimages[0]; 
 
+			$imageurl = '';
+			if (!empty($slide->mediaimagesize))
+			{
+				$imageurllist = wp_get_attachment_image_src($slide->mediaid, $slide->mediaimagesize);
+				$imageurl = empty($imageurllist) ? '' : $imageurllist[0];
+			}
+			else
+			{
+				$imageurl = wp_get_attachment_url($slide->mediaid);
+			}
+
 			$new = array(
 				'type'			=> 0,
-				'image'			=> wp_get_attachment_url($slide->mediaid),
+				'image'			=> $imageurl,
 				'thumbnail'		=> $thumbnail
 			);
 		}
@@ -1161,7 +1181,12 @@ class WonderPlugin_Slider_Model {
 					{
 						$replace = $postdata[$match];
 					}
-						
+					
+					if ($match == 'post_author' && is_numeric($replace))
+					{
+						$replace = get_the_author_meta( 'display_name', $replace );
+					}
+					
 					if ($match == 'post_content' || $match == 'post_excerpt')
 						$replace = wonderplugin_slider_wp_trim_words($replace, $textlength);
 				}

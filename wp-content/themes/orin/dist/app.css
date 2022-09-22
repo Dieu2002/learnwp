@@ -1,0 +1,454 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap);
+body h1 {
+  font-size: 26px;
+}
+body h2 {
+  font-size: 23px;
+}
+body --color-content {
+  color: white;
+}
+body --title-size {
+  line-height: 26px;
+}
+body --btn-background-color {
+  background-color: #4CAF50;
+}
+
+/* 
+Theme Name: orin
+
+Author: dieu
+Author URI: https://wordpress.org/
+Theme URI: https://wordpress.org/themes/orin
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Description: Theme Description.
+Version: 1.0.0
+Text Domain: dieu
+License: GNU v3 or Later 
+*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  line-height: 28px;
+  margin-top: 100px;
+}
+
+.payment {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 100%;
+}
+
+.payment-img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 50px;
+  height: 50px;
+}
+
+.footer-content p a {
+  color: black;
+  text-decoration: none;
+}
+
+.juno {
+  color: rgb(141, 59, 12);
+  font-size: 20px;
+}
+
+@media screen and (max-width: 500px) {
+  .footer-content {
+    display: flex;
+    font-size: 10px;
+    gap: 10px;
+  }
+}
+/* 
+Theme Name: orin
+
+Author: dieu
+Author URI: https://wordpress.org/
+Theme URI: https://wordpress.org/themes/orin
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Description: Theme Description.
+Version: 1.0.0
+Text Domain: dieu
+License: GNU v3 or Later 
+*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/* css  header - menu */
+/* css  header - menu */
+#container {
+  max-width: 1030px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 10px 5px;
+  align-items: center;
+  min-height: 70px;
+  position: fixed;
+  background-image: url(https://tranhlicopen.com/wp-content/uploads/2021/09/main-header.jpg);
+  top: 0px;
+  width: 100%;
+  z-index: 4;
+}
+
+.nav :hover {
+  color: #6e2f11;
+  font-weight: 10px;
+}
+
+.menu-left p {
+  color: #6e2f11;
+  font-family: "Jolly Lodger";
+  font-size: 35px;
+  line-height: 20px;
+}
+
+.menu-right a {
+  color: #787878;
+  text-decoration: none;
+}
+
+.primary-menu ul li {
+  list-style-type: none;
+  display: inline;
+  margin: 10px;
+}
+
+.primary-menu a {
+  color: #787878;
+  text-decoration: none;
+}
+
+.entry-content {
+  margin-top: 36px;
+}
+
+.nav__bars-btn {
+  width: 40px;
+  height: 40px;
+  color: rgb(105, 18, 18);
+  display: none;
+  margin-top: 30px;
+  /* margin-left: 8px; */
+}
+
+.nav__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: none;
+  -webkit-animation: FadeIn linear 0.2s;
+          animation: FadeIn linear 0.2s;
+}
+
+.nav__mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 100%;
+  background: #fff;
+  z-index: 1;
+  opacity: 0;
+  transform: translatey(-100%);
+  transition: transform linear 0.2s;
+}
+
+.nav__mobile .menu__mobile-left {
+  margin: 10px 10px;
+  color: #6e2f11;
+  font-family: "Jolly Lodger";
+  font-size: 35px;
+}
+
+.nav__mobile .primary-menu {
+  margin-top: 10px;
+}
+
+.nav__mobile .primary-menu ul li {
+  display: block;
+  font-size: 20px;
+  color: black;
+  padding: 10px 5px;
+}
+
+.nav__mobile .menu__mobile-right .fa {
+  margin-left: 15px;
+  color: #787878;
+  font-size: 20px;
+}
+
+.nav__mobile-close {
+  width: 28px;
+  height: 28px;
+  color: #666;
+  position: absolute;
+  top: 10px;
+  left: 259px;
+  display: none;
+}
+
+.nav__input {
+  display: none;
+}
+
+.nav__input:checked ~ .nav__overlay {
+  display: block;
+}
+
+.nav__input:checked ~ .nav__mobile {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+/* responsive header */
+@media screen and (max-width: 1180px) {
+  .nav__bars-btn {
+    display: block;
+    font-size: 20px;
+  }
+  .nav {
+    display: none;
+  }
+}
+@-webkit-keyframes FadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes FadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* 
+Theme Name: orin
+
+Author: dieu
+Author URI: https://wordpress.org/
+Theme URI: https://wordpress.org/themes/orin
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Description: Theme Description.
+Version: 1.0.0
+Text Domain: dieu
+License: GNU v3 or Later 
+*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.picture {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  text-align: center;
+}
+.picture .picture-item .pictures__content {
+  line-height: var(--title-size);
+  -webkit-text-decoration-color: none;
+          text-decoration-color: none;
+  text-align: center;
+}
+.picture .picture-item .pictures__content .pictures__content-img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.picture .picture-item .pictures__content .pictures__content-desc {
+  font-weight: 300;
+  font-size: 20px;
+  color: black;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  max-width: 100%;
+  line-height: 24px;
+  word-break: break-word;
+}
+.picture .picture-item .pictures__content .pictures__content-add .pictures__content-add-to-cart i {
+  background-color: var(--btn-background-color);
+  border: none;
+  color: var(--color-content);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.picture .picture-item .pictures__content .pictures__content-add .pictures__content-add-to-cart i:hover {
+  background-color: #945e20;
+}

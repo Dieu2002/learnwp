@@ -1,0 +1,16 @@
+2022-08-30T10:01:42+00:00 CRITICAL Cannot redeclare get_categories() (previously declared in /var/www/html/wp-includes/category.php:26) in /var/www/html/wp-content/themes/orin/functions.php on line 413
+
+2022-08-30T10:15:16+00:00 CRITICAL Cannot redeclare wp_get_post_categories() (previously declared in /var/www/html/wp-includes/post.php:3842) in /var/www/html/wp-content/themes/orin/functions.php on line 412
+
+2022-08-30T10:15:17+00:00 CRITICAL Cannot redeclare wp_get_post_categories() (previously declared in /var/www/html/wp-includes/post.php:3842) in /var/www/html/wp-content/themes/orin/functions.php on line 412
+
+2022-08-30T10:15:38+00:00 CRITICAL Cannot redeclare wp_get_post_categories() (previously declared in /var/www/html/wp-includes/post.php:3842) in /var/www/html/wp-content/themes/orin/functions.php on line 412
+
+2022-08-30T10:15:38+00:00 CRITICAL Cannot redeclare wp_get_post_categories() (previously declared in /var/www/html/wp-includes/post.php:3842) in /var/www/html/wp-content/themes/orin/functions.php on line 412
+
+2022-08-30T10:15:58+00:00 CRITICAL Cannot redeclare wp_get_post_categories() (previously declared in /var/www/html/wp-includes/post.php:3842) in /var/www/html/wp-content/themes/orin/functions.php on line 412
+
+2022-08-30T10:15:58+00:00 CRITICAL Cannot redeclare wp_get_post_categories() (previously declared in /var/www/html/wp-includes/post.php:3842) in /var/www/html/wp-content/themes/orin/functions.php on line 412
+
+2022-08-30T10:21:55+00:00 CRITICAL syntax error, unexpected end of file in /var/www/html/wp-content/themes/orin/functions.php on line 444
+

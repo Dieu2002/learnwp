@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<!-- kiểm tra trang hiện tại -->
+<!-- kiểm tra trang hiện tại của page search -->
 <section id="main-content">
     <div class="search-info">
         <!--Sử dụng query để hiển thị số kết quả tìm kiếm được tìm thấy 

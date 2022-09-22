@@ -1,0 +1,115 @@
+// css content post 
+.picture {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    text-align: center;
+
+    .picture-item {
+        .pictures__content {
+            line-height: var(--title-size);
+            text-decoration-color: none;
+            text-align: center;
+
+            .pictures__content-img img{
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+                object-fit: cover;
+                transition: var(--image-post);
+            }
+            .pictures__content-img img:hover{
+                transform: scale(1.05); 
+            }
+
+            .pictures__content-post {
+                margin-bottom: 16px;
+            }
+            .pictures__content-price {
+                margin: 16px 0;
+                font-size: var(--price-size);
+              }
+
+            .pictures__content-desc {
+                font-weight: 300;
+                font-size: 20px;
+                color: black;
+                margin-bottom: 20px;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                width: 100%;
+                max-width: 100%;
+                line-height: 24px;
+                word-break: break-word;
+            }
+
+            .pictures__content-add {
+                .pictures__content-add-to-cart i {
+                    background-color: var(--btn-background-color);
+                    border: none;
+                    color: var(--color-content);
+                    padding: 15px 32px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                    width:65%;
+                }
+
+                .pictures__content-add-to-cart i:hover {
+                    background-color: #945e20;
+                }
+            }
+        }
+
+    }
+}
+
+// features post 
+.feature {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3em;
+    width: 100vw;
+    gap: 100px;
+    background-color: antiquewhite;
+    .picture-feature {
+        .features__group-item {
+            .picture__feature__content {
+                .picture__feature__content__title {
+                    text-decoration: none;
+                    margin-bottom: 15px;
+                    font-size: 26px;
+                    color: black;
+                }
+
+                .picture__feature__content__image {
+                    width: 500px;
+                    height: 420px;
+                    /* max-width: 100%; */
+                    object-fit: cover;
+                    transition: var(--image-post);
+                }
+
+                .picture__feature__content__image img:hover {
+                    transform: scale(1.05);
+                }
+
+                .picture__feature__content__desc {
+                    margin-top: 10px;
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+}
+// 

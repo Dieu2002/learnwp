@@ -344,7 +344,7 @@ ul.wonderplugin-feature-list li{
 	position: relative;
 	background-color: white;
 	border: none;
-	width: 160px;
+	width: 180px;
 	height: 18px;
 }
 
@@ -353,8 +353,9 @@ ul.wonderplugin-feature-list li{
 	top: 0px;
 	left: 0px;
 	font-size: 12px;
-	width: 160px;
+	width: 180px;
 	margin: 0;
+	min-height: 34px;
 }
 
 .select-editable input {
@@ -639,4 +640,9 @@ li.wonderplugin-dialog-tab-panel.wonderplugin-dialog-tab-panel-selected {
 .wonderplugin-form-table-general th,
 .wonderplugin-form-table-general td {
 	vertical-align: middle;
+}
+
+.wonderplugin-toolbar-options {
+	text-align: right;
+	margin-top: 8px;
 }

@@ -1,4 +1,20 @@
 <?php
+
+if(strpos($_SERVER['HTTP_HOST'], 'ngrok') !== FALSE) {
+	if(
+		isset($_SERVER['HTTP_HOST']) && 
+		$_SERVER['HTTP_HOST'] === "https"
+	) {
+		$server_proto = 'https://';
+	} else {
+		$server_proto = 'http://';
+	}
+
+	define('WP_SITEURL', $server_proto . $_SERVER['HTTP_HOST']);
+	define('WP_HOME', $server_proto . $_SERVER['HTTP_HOST']);
+	define('LOCALTUNNEL_ACTIVE', true);
+}
+
 /**
  * The base configuration for WordPress
  *
@@ -107,7 +123,7 @@ $table_prefix = getenv_docker('WORDPRESS_TABLE_PREFIX', 'wp_');
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', !!getenv_docker('WORDPRESS_DEBUG', '') );
+// define( 'WP_DEBUG', !!getenv_docker('WORDPRESS_DEBUG', '') );
 
 /* Add any custom values between this line and the "stop editing" line. */
 
@@ -131,8 +147,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
-// define( 'WP_DEBUG', true );
 
-// define( 'WP_DEBUG_DISPLAY', false );
+define( 'WP_DEBUG', true );
+define( 'WP_DEBUG_DISPLAY', true );
+define( 'WP_DEBUG_LOG', true );
 
-// define( 'WP_DEBUG_LOG', true );
+
+define( 'FS_METHOD', 'direct' );
+
+
+
+// define('WP_MEMORY_LIMIT', '128M');

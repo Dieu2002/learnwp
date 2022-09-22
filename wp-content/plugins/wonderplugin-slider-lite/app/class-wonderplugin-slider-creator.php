@@ -17,9 +17,12 @@ class WonderPlugin_Slider_Creator {
 		?>
 		
 		<?php 
-		$config = str_replace("<", "&lt;", $config);
-		$config = str_replace(">", "&gt;", $config);
-		$config = str_replace("&quot;", "\&quot;", $config);
+		if (!empty($config))
+		{
+			$config = str_replace("<", "&lt;", $config);
+			$config = str_replace(">", "&gt;", $config);
+			$config = str_replace("&quot;", "\&quot;", $config);
+		}
 		?>
 		
 		<h3><?php _e( 'General Options', 'wonderplugin_slider' ); ?></h3>
@@ -36,7 +39,9 @@ class WonderPlugin_Slider_Creator {
 		<div id="wonderplugin-slider-addextrabackslash" style="display:none;"><?php echo get_option( 'wonderplugin_slider_addextrabackslash', 0 ); ?></div>
 		<div id="wonderplugin-slider-thumbnailsize" style="display:none;"><?php echo $thumbnailsize; ?></div>
 		<?php 
-			$cats = get_categories();
+			$cats = get_categories(array(
+				'hide_empty' => false,
+			));
 			$catlist = array();
 			foreach ( $cats as $cat )
 			{
@@ -172,17 +177,22 @@ class WonderPlugin_Slider_Creator {
 			<li class="wonderplugin-tab wonderplugin-tab-selected">	
 			
 				<div class="wonderplugin-toolbar">	
+				<div class="wonderplugin-toolbar-buttons">
 					<input type="button" class="button" id="wonderplugin-add-image" value="<?php _e( 'Add Image', 'wonderplugin_slider' ); ?>" />
 					<input type="button" class="button" id="wonderplugin-add-video" value="<?php _e( 'Add Video', 'wonderplugin_slider' ); ?>" />
 					<input type="button" class="button" id="wonderplugin-add-youtube" value="<?php _e( 'Add YouTube', 'wonderplugin_slider' ); ?>" />
 					<input type="button" class="button" id="wonderplugin-add-vimeo" value="<?php _e( 'Add Vimeo', 'wonderplugin_slider' ); ?>" />
 					<input type="button" class="button" id="wonderplugin-add-posts" value="<?php _e( 'Add WordPress Posts', 'wonderplugin_slider' ); ?>" />
 					<input type="button" class="button" id="wonderplugin-add-custompost" value="<?php _e( 'Add WooCommerce / Custom Post Type', 'wonderplugin_slider' ); ?>" />
-					<label class="wonderplugin-toolbar-label" style="float:right;"><input type="button" class="button" id="wonderplugin-deleteall" value="<?php _e( 'Delete All', 'wonderplugin_slider' ); ?>" /></label>
-					<label class="wonderplugin-toolbar-label" style="float:right;margin-right:8px;"><input type="button" class="button" id="wonderplugin-reverselist" value="<?php _e( 'Reverse List', 'wonderplugin_slider' ); ?>" /></label>
-					<label class="wonderplugin-toolbar-label" style="float:right;padding-top:6px;margin-right:8px;"><input type='checkbox' id='wonderplugin-newestfirst' value='' /> Add new item to the beginning</label>
 				</div>
-				
+				<div class="wonderplugin-toolbar-options">	
+					<label class="wonderplugin-toolbar-label"><input type="button" class="button" id="wonderplugin-deleteall" value="<?php _e( 'Delete All', 'wonderplugin_slider' ); ?>" /></label>
+					<label class="wonderplugin-toolbar-label"><input type="button" class="button" id="wonderplugin-reverselist" value="<?php _e( 'Reverse List', 'wonderplugin_slider' ); ?>" /></label>
+					<label class="wonderplugin-toolbar-label"><input type="button" class="button" id="wonderplugin-updatevimeothumb" value="<?php _e( 'Update Vimeo Thumbs', 'wonderplugin_slider' ); ?>" /></label>
+					<label class="wonderplugin-toolbar-label"><input type='checkbox' id='wonderplugin-newestfirst' value='' /> Add new item to the beginning</label>
+				</div>
+				</div>
+
         		<ul class="wonderplugin-table" id="wonderplugin-slider-media-table">
 				</ul>
 				<div class="wonderplugin-slider-media-table-help"><span class="dashicons dashicons-editor-help"></span>Click Above Buttons to Add Images, Videos or Posts</div>
@@ -261,6 +271,8 @@ class WonderPlugin_Slider_Creator {
 						<div class="wonderplugin-slider-options-menu-item"><?php _e( 'Text effect', 'wonderplugin_slider' ); ?></div>
 						<div class="wonderplugin-slider-options-menu-item"><?php _e( 'SEO', 'wonderplugin_slider' ); ?></div>
 						<div class="wonderplugin-slider-options-menu-item"><?php _e( 'Skin CSS', 'wonderplugin_slider' ); ?></div>
+						<div class="wonderplugin-slider-options-menu-item"><?php _e( 'Google Analytics', 'wonderplugin_slider' ); ?></div>
+						<div class="wonderplugin-slider-options-menu-item"><?php _e( 'YouTube and Vimeo', 'wonderplugin_slider' ); ?></div>
 						<div class="wonderplugin-slider-options-menu-item"><?php _e( 'Lightbox options', 'wonderplugin_slider' ); ?></div>
 						<div class="wonderplugin-slider-options-menu-item"><?php _e( 'Social Media options', 'wonderplugin_slider' ); ?></div>
 						<div class="wonderplugin-slider-options-menu-item"><?php _e( 'Advanced options', 'wonderplugin_slider' ); ?></div>
@@ -1172,6 +1184,29 @@ class WonderPlugin_Slider_Creator {
 								<tr>
 									<th>Skin CSS</th>
 									<td><textarea name='wonderplugin-slider-skincss' id='wonderplugin-slider-skincss' value='' class='large-text' rows="20"></textarea></td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="wonderplugin-slider-options-tab">
+							<table class="wonderplugin-form-table-noborder">
+								<tr>
+									<th>Google Analytics 4 Measurement ID</th>
+									<td><label><input name="wonderplugin-slider-ga4account" type="text" id="wonderplugin-slider-ga4account" value="" class="regular-text" /></label></td>
+								</tr>
+								<tr>
+									<th>Google Universal Analytics ID</th>
+									<td><label><input name="wonderplugin-slider-googleanalyticsaccount" type="text" id="wonderplugin-slider-googleanalyticsaccount" value="" class="regular-text" /></label></td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="wonderplugin-slider-options-tab">
+							<table class="wonderplugin-form-table-noborder">
+								<tr>
+									<th>Video API Initialization</th>
+									<td><label><input name='wonderplugin-slider-inityoutube' type='checkbox' id='wonderplugin-slider-inityoutube'  /> Initialise YouTube API</label>
+									<p><label><input name='wonderplugin-slider-initvimeo' type='checkbox' id='wonderplugin-slider-initvimeo'  /> Initialise Vimeo API</label></p></td>
 								</tr>
 							</table>
 						</div>
